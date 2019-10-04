@@ -46,15 +46,21 @@
 						
 				<ul class="navbar-nav flex-column text-left">
 					<div class="my-2 my-md-3">
-						<a class="btn btn-primary" href="index.html" target="_blank">博客首页</a>
+						<a class="btn btn-primary" href="index.html" target="_self">博客首页</a>
 					</div>
 					<div class="my-2 my-md-3">
-						<a class="btn btn-primary" href="about.html" target="_blank">我的信息</a>
+						<a class="btn btn-primary" href="files.html" target="_self">我的文件</a>
+					</div>
+					<div class="my-2 my-md-3">
+						<a class="btn btn-primary" href="http://hlddz.huanle.qq.com" target="_blank">精彩对局</a>
+					</div>
+					<div class="my-2 my-md-3">
+						<a class="btn btn-primary" href="about.html" target="_self">我的信息</a>
 					</div>
 				</ul>
 
 				<div class="profile-section pt-3 pt-lg-0" >
-					<br><br><br><br>
+					<br><br>
 					<img class="profile-image mb-3 mx-auto" src="assets/images/husky_PNG11.png" alt="image" >	
 				</div>
 
@@ -72,79 +78,148 @@
 			    </header>
 			    
 			    <div class="blog-post-body">
+
 				    <figure class="blog-banner">
-				        <a href="#"><img class="img-fluid" src="assets/images/blog/blog-post-banner.jpg" alt="image"></a>
-				        <figcaption class="mt-2 text-center image-caption">Image Credit: <a href="#?ref=devblog" target="_blank">made4dev.com (Premium Programming T-shirts)</a></figcaption>
-				    </figure>
-				    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. </p>
-
-				    <h3 class="mt-5 mb-3">Code Block Example</h3>
-				    <p>You can get more info at <a href="#" target="_blank">https://highlightjs.org/</a>. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. </p>
-				   
-				    <h3 class="mt-5 mb-3">Typography</h3>
-				    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-				    <h5 class="my-3">Bullet Points:</h5>
-				    <ul class="mb-5">
-					  <li class="mb-2">Lorem ipsum dolor sit amet consectetuer.</li>
-					  <li class="mb-2">Aenean commodo ligula eget dolor.</li>
-					  <li class="mb-2">Aenean massa cum sociis natoque penatibus.</li>
-					</ul>
-					<ol class="mb-5">
-					  <li class="mb-2">Lorem ipsum dolor sit amet consectetuer.</li>
-					  <li class="mb-2">Aenean commodo ligula eget dolor.</li>
-					  <li class="mb-2">Aenean massa cum sociis natoque penatibus.</li>
-					</ol>
-					<h5 class="my-3">Quote Example:</h5>
-					<blockquote class="blockquote m-lg-5 py-3 pl-4 px-lg-5">
-						<p class="mb-2">You might not think that programmers are artists, but programming is an extremely creative profession. It's logic-based creativity.</p>
-						<footer class="blockquote-footer">John Romero</footer>
-					</blockquote>
+				        <a href="#"><img class="img-fluid" src="assets/images/blog/blog-github-1.png" alt="image"></a>
+				        <figcaption class="mt-2 text-center image-caption">Master and other branches</figcaption>
+					</figure>
 					
-					<h5 class="my-3">Table Example:</h5>
-					<table class="table table-striped my-5">
-						<thead>
-							<tr>
-								<th scope="col">#</th>
-								<th scope="col">First</th>
-								<th scope="col">Last</th>
-								<th scope="col">Handle</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<th scope="row">1</th>
-								<td>Mark</td>
-								<td>Otto</td>
-								<td>@mdo</td>
-							</tr>
-							<tr>
-								<th scope="row">2</th>
-								<td>Jacob</td>
-								<td>Thornton</td>
-								<td>@fat</td>
-							</tr>
-							<tr>
-								<th scope="row">3</th>
-								<td>Larry</td>
-								<td>the Bird</td>
-								<td>@twitter</td>
-							</tr>
-						</tbody>
-					</table>
+					<h3 class="mt-5 mb-3">1 Git 简介</h3>
+						<p>Git是一个开源的分布式版本控制系统，可以有效、高速的处理从很小到非常大的项目版本管理。分布式相比于集中式的最大区别在于每个开发者都可以通过克隆，在本地机器上拷贝一个完整的Git仓库，并在本地仓库中修改，然后推送至远程库。它的特点有：版本切换便捷、独立的分支机制、完整性强等。</p>
 					
-					<h5 class="mb-3">Embed A Tweet:</h5>
+					<h3 class="mt-5 mb-3">2 Git 安装</h3>
+						<code>
+							sudo apt-get install git
+						</code>
+						<br>
+						<code>
+							sudo apt-get install git-core
+						</code>
+
+					<h3 class="mt-5 mb-3">3 创建git仓库</h3>
+						<p>1.cd至代码文件根目录下</p>
+						<p>2.初始化生成git本地仓库</p>
+						<code>
+							git init
+						</code>
+
+					<h3 class="mt-5 mb-3">4 设置签名</h3>
+						<p>1.设置用户名</p>
+						<code>git config (--global) user.name [username]</code>
+						<p>2.设置邮箱</p>
+						<code>git config (--global) user.email [useremail]</code>
+
+					<h3 class="mt-5 mb-3">5 文件的提交</h3>
+						<figure class="blog-banner">
+							<a href="#"><img class="img-fluid" src="assets/images/blog/blog-github-2.png" alt="image"></a>
+						</figure>
+						<p>查看工作区、暂存区状态</p>
+						<code>git status</code>
+						<p>将工作区的目标文件添加至暂存区</p>
+						<code>git add [file_name]</code>
+						<p>将工作区的全部文件添加至暂存区</p>
+						<code>git add .</code>
+						<p>撤销git add操作</p>
+						<code>git rm --cache [file name]</code>
+						<p>撤销暂存区所有文件的git add操作</p>
+						<code>git rm -r --cache .</code>
+
+						<p>将暂存区的内容提交至本地库</p>
+						<code>git commit -m “description infomation” [file name]</code>
+						<p>将暂存区所有的文件都提交至本地库</p>
+						<code>git commit -m “description infomation” .</code>
+						<p>注：对于一个新文件的提交，必须经过git add操作，而对于文件的更新操作，可以直接git commit</p>
+						<p>查看历史记录</p>
+						<code>git log                      #标准输出</code><br>
+						<code>git log --pretty=oneline     #以一行输出一条记录</code><br>
+						<code>git log --oneline            #截取索引值的一部分（仍可唯一确定）</code><br>
+						<code>git reflog				   #截取索引值的一部分</code>
+
+					<h3 class="mt-5 mb-3">6 版本的前进与后退</h3>
+						<p>本质：存在HEAD指针指向当前版本，移动HEAD指针即可进行版本的前进与后退.</p>
+						<p>方法一：基于索引值（推荐）：可后退可前进</p>
+						<code>git reset --hard [局部索引值]  #使用 git reflog 可得</code>
+						<p>方法二：使用^符号：只能后退</p>
+						<code>git reset --hard HEAD^^^     #几个^就后退几个版本</code>
+						<p>方法三：使用~符号：只能后退</p>
+						<code>git reset --hard HEAD~n      #后退n个版本</code>
+						<p>reset的三个参数</p>
+						<p class="suojin">--soft 参数：<br>
+								仅在本地库移动HEAD指针.（即仅修改本地库）</p>
+						<p class="suojin">--mixed 参数：<br>
+								在本地库移动HEAD指针；<br>
+								修改暂存区.</p>
+						<p class="suojin">--hard 参数：<br>
+								在本地库移动HEAD指针；<br>
+								修改暂存区；<br>
+								修改工作区.</p>
+						<p>删除文件并找回</p>
+						<p class="suojin">在工作区删除了某文件后，可使用版本后退恢复文件。</p>
+						<code>git reset --hard [索引 / 指针]</code>
+						<p>比较文件差异</p>
+						<code>git diff [file_name]           #该文件在工作区与暂存区的差异</code><br>
+						<code>git diff [HEAD] [file_name]    #该文件在工作区与本地库某版本的差异</code>
+						<p class="suojin">注：不指定文件名，则比较所有文件的差异</p>
 					
-					<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">1969:<br>-what&#39;re you doing with that 2KB of RAM?<br>-sending people to the moon<br><br>2017:<br>-what&#39;re you doing with that 1.5GB of RAM?<br>-running Slack</p>&mdash; I Am Devloper (@iamdevloper) <a href="#">November 3, 2017</a></blockquote>
-<script async src="#" charset="utf-8"></script>
-
-
-				    
-				    <h3 class="mt-5 mb-3">Video Example</h3>
-				    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. </p>
-
-				    <div class="embed-responsive embed-responsive-16by9">
-					   video					
-					</div>
+					<h3 class="mt-5 mb-3">6 版本的前进与后退</h3>
+						<p>分支：在版本控制的过程中，使用多条线同时推进多个任务，互不影响.</p>
+						<p>创建分支</p>
+						<code>git branch [branch_name]</code>
+						<p>查看分支</p>
+						<code>git branch -v</code>
+						<p>切换分支</p>
+						<code>git checkout [branch_name]</code>
+						<p>合并分支</p>
+						<p class="suojin">将branch_one的内容合并到branch_two</p>
+						<code>git checkout branch_two</code><br>
+						<code>git merge branch_one</code>
+						<p>合并分支冲突</p>
+						<p class="suojin">当两个分支的某个文件的某处内容不同，则合并时会发生冲突，需手工编辑文件.编辑好文件后，执行</p>
+						<code>git add [file_name]</code><br>
+						<code>git commit -m “description infomation”</code>
+						<p class="suojin">注：此时git commit不能加文件名.</p>
+					
+					<h3 class="mt-5 mb-3">7 Github操作</h3>
+						<p>在github上创建好仓库后，得到远程地址。</p>
+						<code>https://github.com/DenineLu/catkin_test.git</code>
+						<p>本地库推送至github</p>
+						<code>git push [remote address] [branch_name]</code>
+						<p class="suojin">通常在本地将远程地址设置一个别名（一般为origin），那么命令可为</p>
+						<code>git push [origin] [branch_name]</code>
+						<p>克隆至本地</p>
+						<code> git clone [remote address]</code>
+						<p class="suojin">效果：完整的把远程库下载到本地；
+								创建origin远程地址别名；
+								初始化本地库。</p>
+						<p>团队成员邀请</p>
+						<p class="suojin">打开github项目仓库 -> Settings -> Collaborators -> 查找好友 -> 复制邀	请链接发送给好友</p>
+						<p>拉取远程库</p>
+						<p class="suojin">pull = fetch + merge</p>
+						<p class="suojin">方法一:</p>
+						<p class="suojin"><code>git fetch [origin] [remote branch_name]</code><br><code>git merge [origin/remote branch_name]</code></p>
+						<p class="suojin">方法二：</p>
+						<p class="suojin"><code>git pull [origin] [remote branch_name]</code></p>
+						<p> PUSH冲突问题</p>
+						<p class="suojin">A与B同时pull了远程库的最新版本，A和B都做了修改，A先push至远程库，	B再push就会失败产生冲突。
+								<br>注：如果不是基于远程库最新版所做的修改，不能推送，必须先拉取最新版。
+								拉取下来时如果进入冲突状态，则按照分支冲突解决操作即可。</p>
+						<p>跨团队协作</p>
+						<p class="suojin">第三方进行Fork操作；<br>
+								第三方pull至本地库进行开发，然后推送到远程库；<br>
+								第三方发起Pull Requests；<br>
+								原作者审核代码、合并。</p>
+						<p>SSH登录</p>
+						<p class="suojin">删除home/.ssh 目录</p>
+						<code>rm -r ~/.ssh</code>
+						<p class="suojin">生成.ssh秘钥目录</p>
+						<code> ssh-keygen -t rsa -C [github_account_email]</code>
+						<p class="suojin">打开 .ssh/id_rsa.pub并复制内容</p>
+						<code> cat .ssh/id_rsa.pub</code>
+						<p class="suojin">打开github账户Settings -> SSH and GPG keys -> new SSH key -> 	粘贴内容 -> 复制远程库的SSH地址<br>
+								在本地添加SSH地址的别名</p>
+						<code> git remote add [origin_ssh] [SSH_address]</code>
+						<p class="suojin">测试Push</p>
+						<code>git push origin_ssh master</code>
 				   
 			    </div>
 				<!--blog页面不需要上一页下一页
@@ -195,22 +270,23 @@
 				
 		    </div><!--//container-->
 	    </article>
-	    
+		
+		<!--广告位 -->
 	    <section class="promo-section theme-bg-light py-5 text-center">
 		    <div class="container">
-			    <h2 class="title">Promo Section Heading</h2>
-			    <p>You can use this section to promote your side projects etc. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. </p>
                 <figure class="promo-figure">
-			        <a href="#" target="_blank"><img class="img-fluid" src="assets/images/promo-banner.jpg" alt="image"></a>
+			        <a href="#" target="_blank"><img class="img-fluid" src="assets/images/blog/blog-github-3.png" alt="image"></a>
 			    </figure>
 		    </div><!--//container-->
 	    </section><!--//promo-section-->
-	    
+		
 	    <footer class="footer text-center py-2 theme-bg-dark">
 		   
-	        <small class="copyright">Designed with <i class="fas fa-heart"></i> by 3rdwavemedia for developers / More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></small>
+			<div id="copyright">Support by &nbsp;&nbsp;
+				<a href="http://www.github.com/" target="_blank" title="github">Github </a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</div>
 		   
-	    </footer>
+		</footer>
     
     </div><!--//main-wrapper-->
     
