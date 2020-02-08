@@ -1,139 +1,36 @@
 ﻿<!DOCTYPE html>
-<html>
-
+<html lang="en" >
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GCN &amp; NE</title>
-  <link rel="stylesheet" href="https://stackedit.io/style.css" />
-</head>
+<meta charset="UTF-8">
+<title>小圆子</title>
 
-<body class="stackedit">
-  <div class="stackedit__html"><h1><a id="GCN__NE_0"></a>GCN &amp; NE</h1>
-<blockquote>
-<p>学科前沿课程任务</p>
-</blockquote>
-<h4><a id="_2"></a><mark>前言</mark></h4>
-<p>在深度学习中，CNN、RNN是我们非常熟悉的面孔，他们在计算机视觉、自然语言处理等领域有着十分出色的表现。但是CNN处理的对象是二维图片，RNN处理的对象是一维序列，（欧氏空间，都是结构规则的数据）。对于社交网络、生物网络等图结构数据（结构十分不规则，没有平移不变性），CNN、RNN就无法处理了。<br>
-于是为了处理图结构数据就涌现出一批方法，如GNN、DeepWalk、node2vec等等。其中GNN中的代表是GCN，DeepWalk和Node2Vec属于Network Embedding。下面分别介绍GCN和Network Embedding及两者之间的相同与区别。</p>
-<h3><a id="GCN_6"></a><mark>GCN介绍</mark></h3>
-<p>GCN首次提出于ICLR2017</p>
-<blockquote>
-<p><em><strong>SEMI-SUPERVISED CLASSIFICATION WITH GRAPH CONVOLUTIONAL NETWORKS</strong></em><br>
-优点：使用切比雪夫多项式的1阶近似高效完成了图卷积架构<br>
-缺点：卷积需使用整个图的拉普拉斯矩阵，图不能扩展</p>
-</blockquote>
-<p>GCN用来提取图结构数据的特征，从而使用这些特征去对图数据进行节点分类（node classification）、图分类（graph classification）、边预测（连接预测）（link prediction），还可以得到图的嵌入表示（graph embedding）。</p>
-<p><img src="https://img-blog.csdnimg.cn/20191223154312635.png#pic_center" alt="图1 Multi-layer Graph Convolutional Network (GCN) with first-order filters."></p><center>图1 Multi-layer Graph Convolutional Network (GCN) with first-order filters.</center><p></p>
-<p>上图即为一个多层GCN，若规定图<span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>G</mi><mo stretchy="false">(</mo><mi>V</mi><mo separator="true">,</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">G(V,E)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathdefault">G</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right: 0.22222em;">V</span><span class="mpunct">,</span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mord mathdefault" style="margin-right: 0.05764em;">E</span><span class="mclose">)</span></span></span></span></span> 的邻接矩阵为<span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.68333em; vertical-align: 0em;"></span><span class="mord mathdefault">A</span></span></span></span></span>，所有 <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mi>o</mi><mi>d</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">node</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.69444em; vertical-align: 0em;"></span><span class="mord mathdefault">n</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mord mathdefault">e</span></span></span></span></span> 的特征向量构成特征矩阵<span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.68333em; vertical-align: 0em;"></span><span class="mord mathdefault" style="margin-right: 0.07847em;">X</span></span></span></span></span>，那么我们把每一个隐含层可以看作为一个非线性函数<br>
-<img src="https://img-blog.csdnimg.cn/2019122319353873.png#pic_center" alt="在这里插入图片描述">其中，<span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>H</mi><mrow><mo stretchy="false">(</mo><mi>l</mi><mo stretchy="false">)</mo></mrow></msup></mrow><annotation encoding="application/x-tex">H^{(l)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.888em; vertical-align: 0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right: 0.08125em;">H</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.888em;"><span class="" style="top: -3.063em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathdefault mtight" style="margin-right: 0.01968em;">l</span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span></span></span></span></span> 表示第 <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi></mrow><annotation encoding="application/x-tex">l</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.69444em; vertical-align: 0em;"></span><span class="mord mathdefault" style="margin-right: 0.01968em;">l</span></span></span></span></span> 层的特征矩阵，<span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>H</mi><mrow><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo></mrow></msup><mo>=</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">H^{(0)} = X</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.888em; vertical-align: 0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right: 0.08125em;">H</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.888em;"><span class="" style="top: -3.063em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mtight">0</span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.68333em; vertical-align: 0em;"></span><span class="mord mathdefault" style="margin-right: 0.07847em;">X</span></span></span></span></span>.  即上图GCN的输入就是<span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.68333em; vertical-align: 0em;"></span><span class="mord mathdefault">A</span></span></span></span></span> 与 <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>X</mi><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">X.</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.68333em; vertical-align: 0em;"></span><span class="mord mathdefault" style="margin-right: 0.07847em;">X</span><span class="mord">.</span></span></span></span></span>  以此得到最终的特征矩阵<span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>Z</mi></mrow><annotation encoding="application/x-tex">Z</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.68333em; vertical-align: 0em;"></span><span class="mord mathdefault" style="margin-right: 0.07153em;">Z</span></span></span></span></span> ，即得到各个 <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mi>o</mi><mi>d</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">node</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.69444em; vertical-align: 0em;"></span><span class="mord mathdefault">n</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mord mathdefault">e</span></span></span></span></span> 经Embedding后的特征向量。</p>
-<p><strong>从一个简单的例子来看GCN是如何逐层传播的</strong><br>
-一个传播规则如下：<br>
-<img src="https://img-blog.csdnimg.cn/20191223203257877.png#pic_center" alt="在这里插入图片描述"><br>
-上式即为每层GCN所做的工作就是将图的邻接矩阵<span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.68333em; vertical-align: 0em;"></span><span class="mord mathdefault">A</span></span></span></span></span> 与 <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mi>o</mi><mi>d</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">node</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.69444em; vertical-align: 0em;"></span><span class="mord mathdefault">n</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mord mathdefault">e</span></span></span></span></span> 的特征矩阵<span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>H</mi></mrow><annotation encoding="application/x-tex">H</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.68333em; vertical-align: 0em;"></span><span class="mord mathdefault" style="margin-right: 0.08125em;">H</span></span></span></span></span> 相乘，再乘以一个参数矩阵<span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.68333em; vertical-align: 0em;"></span><span class="mord mathdefault" style="margin-right: 0.13889em;">W</span></span></span></span></span> ，最后再使用一个非线性激活函数激活一下。</p>
-<p><strong>但是这个简单模型有几个局限性：</strong></p>
-<ul>
-<li>由于<span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.68333em; vertical-align: 0em;"></span><span class="mord mathdefault">A</span></span></span></span></span> 的对角线上都是0，所以在和特征矩阵<span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>H</mi></mrow><annotation encoding="application/x-tex">H</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.68333em; vertical-align: 0em;"></span><span class="mord mathdefault" style="margin-right: 0.08125em;">H</span></span></span></span></span> 相乘的时候，只会计算一个<span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mi>o</mi><mi>d</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">node</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.69444em; vertical-align: 0em;"></span><span class="mord mathdefault">n</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mord mathdefault">e</span></span></span></span></span> 的所有邻居节点的特征的加权和，该<span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mi>o</mi><mi>d</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">node</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.69444em; vertical-align: 0em;"></span><span class="mord mathdefault">n</span><span class="mord mathdefault">o</span><span class="mord mathdefault">d</span><span class="mord mathdefault">e</span></span></span></span></span> 自己的特征却被忽略了。因此，我们可以做一个小小的改动，给<span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.68333em; vertical-align: 0em;"></span><span class="mord mathdefault">A</span></span></span></span></span> 加上一个单位矩阵<span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>I</mi></mrow><annotation encoding="application/x-tex">I</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.68333em; vertical-align: 0em;"></span><span class="mord mathdefault" style="margin-right: 0.07847em;">I</span></span></span></span></span>，记作<span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mover accent="true"><mi>A</mi><mo>^</mo></mover></mrow><annotation encoding="application/x-tex">\hat{A}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.94677em; vertical-align: 0em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.94677em;"><span class="" style="top: -3em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord mathdefault">A</span></span></span><span class="" style="top: -3.25233em;"><span class="pstrut" style="height: 3em;"></span><span class="accent-body" style="left: -0.11111em;">^</span></span></span></span></span></span></span></span></span></span>。</li>
-<li><span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.68333em; vertical-align: 0em;"></span><span class="mord mathdefault">A</span></span></span></span></span> 是没有经过归一化的矩阵，这样与特征矩阵相乘会改变特征原本的分布，产生一些不可预测的问题。所以我们对A做一个标准化处理，即进行傅里叶变换，得到一个对称且归一化的矩阵 。</li>
-</ul>
-<p>通过对上面两个局限的改进，我们便得到了最终的层特征传播公式。<br>
-<img src="https://img-blog.csdnimg.cn/20191223205418747.png#pic_center" alt="在这里插入图片描述"></p>
-<ul>
-<li>公式中的<span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mover accent="true"><mi>D</mi><mo>^</mo></mover><mrow><mo>−</mo><mn>1</mn><mi mathvariant="normal">/</mi><mn>2</mn></mrow></msup><mover accent="true"><mi>A</mi><mo>^</mo></mover><msup><mover accent="true"><mi>D</mi><mo>^</mo></mover><mrow><mo>−</mo><mn>1</mn><mi mathvariant="normal">/</mi><mn>2</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\hat{D}^{-1/2} \hat{A}\hat{D}^{-1/2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.94677em; vertical-align: 0em;"></span><span class="mord"><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.94677em;"><span class="" style="top: -3em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right: 0.02778em;">D</span></span></span><span class="" style="top: -3.25233em;"><span class="pstrut" style="height: 3em;"></span><span class="accent-body" style="left: -0.19444em;">^</span></span></span></span></span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.888em;"><span class="" style="top: -3.063em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1</span><span class="mord mtight">/</span><span class="mord mtight">2</span></span></span></span></span></span></span></span></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.94677em;"><span class="" style="top: -3em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord mathdefault">A</span></span></span><span class="" style="top: -3.25233em;"><span class="pstrut" style="height: 3em;"></span><span class="accent-body" style="left: -0.11111em;">^</span></span></span></span></span></span><span class="mord"><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.94677em;"><span class="" style="top: -3em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right: 0.02778em;">D</span></span></span><span class="" style="top: -3.25233em;"><span class="pstrut" style="height: 3em;"></span><span class="accent-body" style="left: -0.19444em;">^</span></span></span></span></span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.888em;"><span class="" style="top: -3.063em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1</span><span class="mord mtight">/</span><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span></span> 即用拉普拉斯矩阵来实现傅里叶变换，而在谱图卷积的核心就是使用对称归一化拉普拉斯矩阵，这也是GCN的卷积叫法的来历。</li>
-</ul>
-<p><strong>GCN效果展示</strong><br>
-选用graph dataset: karate club network<br>
-<img src="https://img-blog.csdnimg.cn/2019122321102138.png#pic_center" alt="在这里插入图片描述" width="400" height="300"><br>
-构造一个三层GCNs，使用随机初始化的参数矩阵<span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.68333em; vertical-align: 0em;"></span><span class="mord mathdefault" style="margin-right: 0.13889em;">W</span></span></span></span></span>，以及初始特征矩阵<span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.68333em; vertical-align: 0em;"></span><span class="mord mathdefault" style="margin-right: 0.07847em;">X</span></span></span></span></span>选用单位矩阵<span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>I</mi></mrow><annotation encoding="application/x-tex">I</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.68333em; vertical-align: 0em;"></span><span class="mord mathdefault" style="margin-right: 0.07847em;">I</span></span></span></span></span>.<br>
-得到的Embedding 效果如图所示<br>
-<img src="https://img-blog.csdnimg.cn/20191223211827983.png#pic_center" alt="在这里插入图片描述" width="380" height="280"></p>
-<ul>
-<li>可见，尽管没有经过训练，经过GCN的提取出的embedding，已经在空间上自动聚类了。而这种聚类结果，可以和DeepWalk、node2vec这种经过复杂训练得到的node embedding的效果媲美了。</li>
-</ul>
-<p>接着按半监督训练，给每一类的节点，仅提供一个标注样本，然后训练，得到的可视化效果如下：<br>
-<img src="https://img-blog.csdnimg.cn/20191223212734739.gif#pic_center" alt="在这里插入图片描述"></p>
-<h3><a id="NE_42"></a><mark>NE介绍</mark></h3>
-<p>Network Embedding 就是将网络的节点和向量之间建立一个一一对应的关系，并且保留网络的一些拓扑性质。中心思想就是找到一种映射函数，该函数将网络中的每个节点转换为低维度的潜在表示。 在 Network embedding space中，节点之间的关系由点之间的距离来表示，结构上的特点由向量来表示。</p>
-<p><strong>Network Embedding 的两个目标</strong></p>
-<ul>
-<li>1.能够从已经学习到的低维向量空间中重构原始Network.</li>
-<li>2.学习到的低维向量空间能够有效支持网络推理（节点分类，连接预测，识别重要节点等）</li>
-</ul>
-<p><strong>根据Embedding保留的信息类型划分Embedding methods</strong></p>
-<ul>
-<li>1.保留网络结构和性质：
-<ul>
-<li>网络结构包括：邻近结构、高阶邻近节点等</li>
-<li>网络性质包括：网络传递性、结构平衡性等</li>
-</ul>
-</li>
-<li>2.保留辅助信息（side information）:
-<ul>
-<li>除了网络拓扑结构，一些类型的网络有很丰富的辅助信息，比如节点和边的内容。</li>
-</ul>
-</li>
-<li>3.保留高级信息
-<ul>
-<li>前两种方法基本是无监督学习，而此处保留节点的标签信息，应用监督学习或半监督学习进行节点分类任务。</li>
-</ul>
-</li>
-<li>总的来说，网络结构和性质是基本考虑因素，辅助信息和高级信息能够使得Embedding在某些场景表现得更好。</li>
-</ul>
-<p><strong>从Original Space到Embedding Space的映射模型</strong></p>
-<ul>
-<li>1.基于矩阵分解的方法
-<ul>
-<li>如拉普拉斯特征谱LE、局部线性表示LLE、GraRep、网络降维更新算法。</li>
-<li>这类基于矩阵分解的方法考虑了网络全局节点相似度，可以更好地表示网络，但这类方法由于在时间和空间上有较高的复杂度，不适用于大规模网络。</li>
-</ul>
-</li>
-<li>2.基于随机游走的方法
-<ul>
-<li>DeepWalk:核心思想是，采用随机游走的方式，将网络结构节点之间的关系转化成句子，那么不同节点就代表不同的词，然后用自然语言处理中Word2Vec的方法得到节点的低维度向量表示。那么这种方法其实就是分两步：随机游走，和词向量表示学习。</li>
-<li>Node2Vec:是DeepWalk的改进版本，DeepWalk采用DFS做随机游走，Node2Vec结合了DFS和BFS两种方式做随机游走，可以更全面的表示网络节点的邻居关系。</li>
-</ul>
-</li>
-<li>3.基于深度学习的方法
-<ul>
-<li>如SDNE（Structural Deep Network Embedding）</li>
-<li>使用无监督的深度自编器对节点间的二阶近似关系进行建模，并监督式地在目标中间层使用拉普拉斯阵对节点间的一阶近似关系进行建模。</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p><a href="https://blog.csdn.net/liuyangxiaolu/article/details/100187268">分类引用</a><br>
-<a href="https://www.jianshu.com/p/e6660fa41119">方法说明</a><br>
-<a href="https://blog.csdn.net/SIGAI_CSDN/article/details/82499070">2和3说明</a></p>
-</blockquote>
-<h3><a id="GCNNE_74"></a><mark>GCN与NE的相似之处</mark></h3>
-<ul>
-<li>它们的本质都是将原始网络映射到低维向量空间，以便后续完成各种任务，如节点分类，连接预测，社区发现等。</li>
-<li>GCN属于NE基于深度学习的方法</li>
-</ul>
-<h3><a id="GCNNE_79"></a><mark>GCN与NE的不同之处</mark></h3>
-<p><strong>从思想上来看</strong></p>
-<ul>
-<li>GCN核心思想在于利用节点邻居的信息来更新自己，通过迭代来扩大信息收集范围，直至整个图趋于平稳状态。具体来说，GCN就是把图的邻接矩阵进行傅里叶变换，然后与图的特征矩阵相乘，完成卷积操作。</li>
-<li>NE是一个大类，其每种方法思想不一:
-<ul>
-<li>基于矩阵分解的方法：对图的邻接矩阵<span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.68333em; vertical-align: 0em;"></span><span class="mord mathdefault">A</span></span></span></span></span>和属性矩阵<span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.68333em; vertical-align: 0em;"></span><span class="mord mathdefault" style="margin-right: 0.07847em;">X</span></span></span></span></span>进行特征值分解，从而得到每个节点的嵌入表示。</li>
-<li>基于随机游走的方法：首先选取节点进行随机游走得到句子（词序列），再对句子应用词向量表示学习方法，如DeepWalk中的skip-gram（思想类似极大似然概率），不断更新各词的词向量，得到最终的低维向量空间。</li>
-<li>基于深度学习的方法：如SDNE，它是一个半监督的深层模型，它具有多层非线性函数，通过将输入数据映射到高度非线性的潜在空间以捕获网络结构，并且通过半监督的深度模型中联合优化一阶相似和二阶相似。</li>
-</ul>
-</li>
-</ul>
-<p><strong>从适应性来看</strong></p>
-<ul>
-<li>GCN只适用于无向图，而NE中的LINE可适应无向图及有向图</li>
-</ul>
-<p><strong>从效果上来看</strong></p>
-<ul>
-<li>对于数据集：空手道俱乐部网络</li>
-<li>构造一个三层GCNs，使用随机初始化的参数矩阵<span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.68333em; vertical-align: 0em;"></span><span class="mord mathdefault" style="margin-right: 0.13889em;">W</span></span></span></span></span>，以及初始特征矩阵<span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.68333em; vertical-align: 0em;"></span><span class="mord mathdefault" style="margin-right: 0.07847em;">X</span></span></span></span></span>选用单位矩阵<span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>I</mi></mrow><annotation encoding="application/x-tex">I</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.68333em; vertical-align: 0em;"></span><span class="mord mathdefault" style="margin-right: 0.07847em;">I</span></span></span></span></span>. 得到的Embedding 效果如图所示 <img src="https://img-blog.csdnimg.cn/20191224154752862.png#pic_center" alt="在这里插入图片描述"></li>
-<li>NE经典算法DeepWalk的效果如图所示<img src="https://img-blog.csdnimg.cn/20191224155145184.png#pic_center" alt="在这里插入图片描述"></li>
-<li>可见，没有经过训练的GCN效果与经过训练的DeepWalk效果差别却不大。</li>
-</ul>
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+
+<div class='container'>
+  <div id='l-ball' class='ball'>
+    <div class='face face-l'>
+      <div class='eye eye-l'></div>
+      <div class='eye eye-r'></div>
+      <div class='mouth'></div>
+    </div>
+  </div><div id='r-ball' class='ball'>
+    <div class='face face-r'>
+      <div class='eye eye-l eye-r-p'></div>
+      <div class='eye eye-r eye-r-p'></div>
+      <div class='mouth mouth-r'></div>
+      <div class='kiss-m'>
+        <div class='kiss'></div>
+        <div class='kiss'></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';">
+<p>小圆子与小卢</p>
 </div>
 </body>
-
 </html>
