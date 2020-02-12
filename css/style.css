@@ -196,3 +196,21 @@ canvas {
   50%{transform:translate(0) rotate(0);}
   100%{transform:translate(0) rotate(0);}
 }
+
+button{
+	padding: 10px 60px;
+	border-radius:15px 15px 15px 15px; 
+	
+	color: rgb(255, 255, 255);
+}
+#btn1{
+  background-color: rgb(20, 68, 172);
+  border: 1.8px  rgb(20, 68, 172) solid;
+  opacity: 0;
+}
+#btn2{
+  background-color: rgb(53, 110, 27);
+  border: 1.8px  rgb(53, 110, 27) solid;
+  opacity: 0; 
+}
+

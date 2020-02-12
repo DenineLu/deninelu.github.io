@@ -248,9 +248,22 @@
       render();
     }, 3000);
   })(document.getElementById('pinkboard'));
+
+  //delay the buttons display(opacity)
+  setTimeout(function() {
+    document.getElementById("btn1").style.opacity=i;
+    document.getElementById("btn2").style.opacity=i;
+  }, 8000);
 </script>
 <!-- 心的部分结束 -->
-
+<div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';">
+  <div>
+    <button id="btn1"  onclick="window.location.href='ourroad.html'">测试</button>
+  </div>
+  <div style="margin-top: 20px;">
+    <button id="btn2" onclick="window.location.href='ourphotoes.html'">测试</button>
+  </div>
+</div>
 <div class='container'>
   <div id='l-ball' class='ball' style="color:rgb(57, 81, 148);">
     <div class='face face-l'>
@@ -271,8 +284,6 @@
   </div>
 </div>
 
-<div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';">
-<p>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
-</div>
+
 </body>
 </html>
