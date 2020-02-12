@@ -288,9 +288,4 @@ setTimeout(function() {
 	document.getElementById("btnshow").style.display="block";
 }, 3000);
 
-var button=new button();
-button.label="CLICK";
-a2.addChild(button);
-a2.x=12;
-a2.y=13;
 
