@@ -286,6 +286,6 @@ initVars();
 frame();
 setTimeout(function() {
 	document.getElementById("btnshow").style.display="block";
-}, 8000);
+}, 10000);
 
 

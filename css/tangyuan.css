@@ -198,9 +198,9 @@ canvas {
 }
 
 button{
-	padding: 15px 70px;
+	padding: 30px 120px;
 	border-radius:15px 15px 15px 15px; 
-	
+	font-size: 20px;
 	color: rgb(255, 255, 255);
 }
 #btn1{

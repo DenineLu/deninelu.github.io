@@ -19,15 +19,16 @@ html,body{
 }
 button{
 	display: none; 
-	padding: 15px 70px;
+	padding: 24px 97px;
 	border-radius:15px 15px 15px 15px; 
 	background:none; 
-	border: 3px  rgb(17, 143, 73) solid; 
+	border: 3px  rgb(15, 114, 6) solid; 
 	color: rgb(255, 255, 255);
+	font-size: 20px;
 }
 div{
 	position: absolute;
-	left: 44%;
+	left: 41%;
 	top: 48%;
 }
 </style>
@@ -42,7 +43,10 @@ div{
 <div>
 	<button id="btnshow"  onclick="window.location.href='tangyuan.html'">ENTER</button>
 </div>
-
+<audio autoplay="autoplay" loop="loop">
+	<source src="source/hupan.mp3" type="audio/mpeg"/>
+	您的浏览器不支持 audio 标签。
+</audio>
 <script src="js/3dyanhua.js"></script>
 </body>
 </html>
